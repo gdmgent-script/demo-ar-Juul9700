@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiat Multipla AR</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+<body>
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3_PARITY65;'>
+
+      <!-- Hiro Marker met afbeelding -->
+      <a-marker preset="hiro">
+        <a-image
+          src="simon.jpeg"
+          position="0 0 0"
+          rotation="-90 0 0"
+          width="1"
+          height="1">
+        </a-image>
+      </a-marker>
+        
+      <!-- Kanji Marker met Torus (links) en Fiat Multipla (rechts) -->
+      <a-marker preset="kanji">
+
+        <!-- Torus links (-0.7 op X-as) -->
+        <a-entity position="-0.7 0 0" rotation="0 0 0" 
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear">
+          <a-torus-knot color="#B84A39" arc="180" p="2" q="7" 
+                        radius="0.3" radius-tubular="0.01">
+          </a-torus-knot>
+        </a-entity>
+
+        <!-- Fiat Multipla rechts (0.7 op X-as) -->
+        <a-entity position="0.7 0 0" rotation="0 0 0" 
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear">
+          <a-gltf-model 
+            src="fiat_multipla_1998_3d_model.glb" 
+            position="0 0 0" 
+            scale="0.05 0.05 0.05">
+          </a-gltf-model>
+        </a-entity>
+
+      </a-marker>
+
+      <a-entity camera></a-entity>
+
+    </a-scene>
+</body>
+</html>
